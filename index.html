@@ -1,0 +1,371 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kudi - Money guard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#10B981">
+</head>
+<body>
+
+<nav class="navtop">
+  <div class="navleft">
+    <button class="btnmenu"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+    <div class="logo"><svg class="icon" viewBox="0 0 40 40"><rect x="2" y="2" width="36" height="36" rx="8" fill="#10B981" /><text id="logo_text" x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" font-size="18" font-weight="700" fill="white" font-family="sans-serif">KG</text></svg></div>    <span class="name">Kudi Guard</span>
+  </div>
+  <div class="navright">
+    <button class="btnset" onclick="openSettings()"><svg class="icon" viewBox="0 0 24 24"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" stroke-width="2" /><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="2" fill="none" /></svg></button>
+    <button class="btnreload"><svg class="icon" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" /><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M20.49 15a9 9 0 01-14.85 3.36L1 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" /></svg></button>
+  </div>
+</nav>
+
+<aside class="sidebar">
+  <ul class="menulist">
+    <li><a href="#" data-screen="home" class="active"><svg class="menuicon" viewBox="0 0 24 24"><path d="M3 9L12 2l9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Home</a></li>
+    <li><a href="#" data-screen="budget" id="budget_btn"><svg class="menuicon" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Budgets</a></li>
+    <li><a href="#" data-screen="settings" onclick="openSettings()"><svg class="menuicon" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/></svg>Settings</a></li>
+    <li><a href="#profile" data-screen="profile"><svg class="menuicon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z" /></svg>Profile</a></li>
+  </ul>
+  <div class="contact-card">
+  <div class="contact-footer-pinned">
+    <h3 class="contact_us">Contact us -</h3>
+    <div class="contact-item">
+      <strong>Phone:</strong> <a href="tel:09032618497">09032618497</a>
+    </div>
+    <div class="contact-item">
+      <strong>Email:</strong> <a href="mailto:saliusulyman2011@gmail.com">saliusulyman2011@gmail.com</a>
+    </div>
+  </div>
+</div>
+
+</aside>
+
+<!--settings modal-->
+<dialog id="settingsModal">
+  <div class="settings-header">
+    <h3>Settings</h3>
+    <button class="btn-close" onclick="" id="closeSettings">&times;</button>
+  </div>
+  <div class="settings-body">
+    <label class="setting-item">
+      <span>Dark Mode</span>
+      <input type="checkbox" id="toggleDark">
+    </label>
+    <label class="setting-item">
+      <span id="notify">Allow Notifications</span>
+      <input type="checkbox" id="toggleNotif">
+    </label>
+    <label class="setting-item">
+      <span>Font Size</span>
+      <select id="font_size"></select>
+    </label>
+    <label class="setting-item">
+      <span>Currency</span>
+      <select class="select_currency"></select>
+    </label>
+  </div>
+</dialog>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast"></div>
+
+<main id="app">
+  <div id="home" class="screen">
+  <div class="home-wrap">
+
+      <div class="header-card">
+        <div class="header-top">
+          <h1 class="amount-title">₦0.00</h1>
+    
+          <div class="select-wrapper">
+            <svg class="select-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+            <select class="time-select" id="timeFilter">
+              <option value="today">Today</option>
+              <option value="week">This Week</option>
+              <option value="month">This Month</option>
+            </select>
+            <input type="date" class="date_filter" class="date_filter">
+          </div>
+        </div>
+      
+      <p class="amount-label">Amount Spent Today</p>
+    </div>
+
+    <!-- NEW: EXPENSE LIST + ADD BUTTON -->
+    <div class="expense-section">
+      <div class="expense-header">
+        <h3>Expenses</h3>
+        <button class="btn-add-expense" id="openAddExpense">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Add Expense
+        </button>
+      </div>
+    </div>
+
+  </div>
+    <dialog id="addExpenseDialog">
+  <form class="dialog-form" method="dialog">
+    <button type="button" class="close-icon" id="closeAddExpense">×</button>
+    
+    <h3 class="dialog-title">Add Expense</h3>
+
+    <div class="form-group">
+      <label for="expenseAmount">Amount ₦</label>
+      <input type="number" id="expenseAmount" placeholder="2500" required>
+    </div>
+
+    <div class="form-group">
+      <label for="expenseCategory">Category</label>
+      <select id="expenseCategory" required>
+        <option value="">Select</option>
+        <option>Food</option>
+        <option>Data</option>
+        <option>Airtime</option>
+        <option>Transport</option>
+        <option>Fuel</option>
+        <option>Clothes</option>
+        <option>Party</option>
+        <option>Shopping</option>
+        <option>Rent</option>
+        <option>Taxes</option>
+        <option>Books</option>
+        <optuon>Fees</optuon>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <input type="hidden" id="expenseId">
+
+    <button type="submit" class="btn-primary">Save</button>
+  </form>
+    </dialog>
+    <div class="dashboard-card">
+  <div class="dashboard-list" id="expenseList"></div>
+</div>
+
+</div>
+  <div id="budget" class="screen">
+  
+  <div class="budget-header">
+    <h1>Budgets</h1>
+    <button class="btn-primary">+ Create Budget</button>
+  </div>
+
+  <div class="budget-grid">
+
+    <div class="budget-card">
+      <div class="card-top">
+        <div class="card-title-block">
+          <h3>September Food Budget</h3>
+          <p class="card-categories">Applies to: Food, Snacks</p>
+        </div>
+        <div class="card-menu">⋮</div>
+      </div>
+
+      <div class="card-date-badge">Sep 1 - Sep 30</div>
+
+      <div class="card-chart">
+        <div class="donut green" style="--percent: 40">
+          <div class="donut-inner">
+            <span class="donut-amount">₦200 / ₦500</span>
+            <span class="donut-percent">40%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-progress">
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 40%"></div>
+        </div>
+      </div>
+
+      <div class="card-actions">
+        <button class="btn btn-edit">Edit</button>
+        <button class="btn btn-delete">Delete</button>
+      </div>
+    </div>
+
+  </div>
+    <dialog id="budget_dialog" class="budget_dialog">
+  <form method="dialog" class="budget_dialogForm">
+    <div class="budget_dialogHeader">
+      <h2>Add Budget</h2>
+      <button type="button" id="budget_closeDialogBtn" class="budget_closeBtn">X</button>
+    </div>
+
+    <label>Name <span>[optional]</span></label>
+    <input type="text" id="budget_name" placeholder="budget1">
+
+    <label>Max limit</label>
+    <input type="number" id="budget_limit" placeholder="₦ 00.00" required>
+
+    <label>Applies to</label>
+    <select id="budget_categories" multiple>
+      <option value="all">All Categories</option>
+      <option value="food">Food</option>
+      <option value="fuel">Fuel</option>
+      <option value="transport">Transport</option>
+      <option value="data">Data</option>
+      <option value="airtime">Airtime</option>      
+      <option value="clothes">Clothes</option>
+      <option value="party">Party</option>
+      <option value="shopping">Shopping</option>
+      <option value="rent">Rent</option>
+      <option value="taxes">Taxes</option>
+      <option value="books">Books</option>
+      <option value="fees">Fees</option>
+      <option value="others">Others</option>
+    </select>
+
+    <label>Budget type</label>
+    <div class="budget_spanToggle">
+      <button type="button" class="budget_spanBtn budget_spanBtnActive" data-span="daily">Daily</button>
+      <button type="button" class="budget_spanBtn" data-span="weekly">Weekly</button>
+      <button type="button" class="budget_spanBtn" data-span="monthly">Monthly</button>
+    </div>
+    <input type="hidden" id="budget_span" value="daily">
+
+    <label>Start date</label>
+    <input type="date" id="budget_startDate">
+
+    <div class="budget_alertToggle">
+      <label>
+        <input type="checkbox" id="budget_alertToggle">
+        Alert me at
+      </label>
+      <input type="number" id="budget_alertPercent" value="80" min="1" max="100"> %
+    </div>
+
+    <button type="submit" id="budget_createBtn" class="budget_btnPrimary">Create Budget</button>
+  </form>
+</dialog>
+</div>
+  <div class="screen" id="history">
+    <div class="search-wrapper">
+      <input type="date" id="dateSearch" class="search-input">
+      <button id="searchBtn" class="search-btn">Search</button>
+    </div>
+
+    <div id="historyList" class="history-list">
+      <div class="empty_block">Empty....</div>
+    </div>
+  </div>
+  <div id="services" class="screen"></div>
+  <div id="profile" class="screen">
+  <div class="profile-wrap">
+    
+    <div class="profile-card">
+      <div class="avatar">
+        <img id="profilePic" src="" alt="Profile">
+        <div class="avatar-overlay">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="profile-details">
+        <h2 class="username" id="username" onclick="changeUsername()">
+          {set username}
+        </h2>
+
+        <div class="profile-stats">
+          <div class="stat">
+            <p class="stat-label">No of Budgets</p>
+            <p class="stat-num">0</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="date-bottom-right" id="profileDate"></div>
+  
+  <button class="mic-btn">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Z" fill="var(--accent)"/>
+      <path d="M19 10v1a7 7 0 0 1-14 0v-1M12 19v3M8 22h8" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</main>
+
+<footer class="foot">
+  <div class="ufo"></div>
+  <button data-screen="services" id="services">Services</button>
+  <button data-screen="history">History</button>
+</footer>
+
+<dialog id="promptModal" class="prompt-dialog">
+  <p id="promptMessage" class="prompt-message">Message</p>
+  <div class="prompt-actions">
+    <button id="promptOk" class="prompt-btn">Ok</button>
+  </div>
+</dialog>
+<dialog class="budget_history">
+  <div class="history-header">
+    <h2>Budget History</h2>
+    <button type="button" class="close-btn" onclick="this.closest('dialog').close()">&times;</button>
+  </div>
+
+  <div class="top-divider"></div>
+
+  <div class="chart-section">
+    <div class="bar-chart">
+      <div class="bar-group">
+        <div class="bar" style="--height: 40%;"></div>
+        <span class="bar-label">Mon</span>
+      </div>
+      <div class="bar-group">
+        <div class="bar" style="--height: 75%;"></div>
+        <span class="bar-label">Tue</span>
+      </div>
+      <div class="bar-group">
+        <div class="bar over-budget" style="--height: 100%;"></div>
+        <span class="bar-label">Wed</span>
+      </div>
+      <div class="bar-group">
+        <div class="bar" style="--height: 60%;"></div>
+        <span class="bar-label">Thu</span>
+      </div>
+      <div class="bar-group">
+        <div class="bar" style="--height: 25%;"></div>
+        <span class="bar-label">Fri</span>
+      </div>
+    </div>
+  </div>
+
+  <ul class="history-list">
+    <li class="history-item">
+      <div class="item-details">
+        <span class="item-date">2026-10-09</span>
+        <span class="item-amount">Amount spent: ₦15,000 / ₦20,000</span>
+        <span class="item-percentage">75%</span>
+      </div>
+      <div class="donut-chart" style="--percent: 75%;">
+        <span class="donut-center">75%</span>
+      </div>
+    </li>
+
+    <li class="history-item">
+      <div class="item-details">
+        <span class="item-date">2026-10-08</span>
+        <span class="item-amount">Amount spent: ₦22,000 / ₦20,000</span>
+        <span class="item-percentage text-danger">110%</span>
+      </div>
+      <div class="donut-chart over-budget" style="--percent: 100%;">
+        <span class="donut-center">110%</span>
+      </div>
+    </li>
+  </ul>
+</dialog>
+
+<script src="app.js" type="module"></script>
+<script src="main.js"></script>
+<input type="file" id="fileInput" accept="image/*" capture="user" style="display: none;">
+</body>
+</html>
