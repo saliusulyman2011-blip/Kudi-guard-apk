@@ -1119,11 +1119,15 @@ function tokenize(script) {
   let {id , name , sign , status , updatedAt} = currency
   tokenArray.push({type:"currency" , value:{name , sign}})
   
-  if (!hasAmt || !hasCat) {
+  if (!hasAmt) {
     openToast("statement not recognized")
   }
+
+  if (!hasCat) {
+    tokenArray.push({type:"category" , value:"others"})
+  }
   
-  return hasAmt && hasCat ? tokenArray : {error : "statement not recognized"}
+  return hasAmt ? tokenArray : {error : "statement not recognized"}
   
 }
 
