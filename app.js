@@ -477,6 +477,7 @@ function startLongPress(id) {
         dateSearch.value = ""
         historyList.innerHTML = ""
         loadAllHistory();
+        displayTotalExpenses(amountFilter.value , date_filter.value)
       }
     });
   }, 600);
